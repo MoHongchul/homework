@@ -1,0 +1,18 @@
+/*site font (google)*/
+* {
+    font-family: 'Stylish', sans-serif;
+}
+
+/*form design*/
+.form_desgin {
+    margin: auto;
+    padding: 20px;
+    width: 700px;
+}
+
+/*image design*/
+.image_design {
+    width: 700px;
+    background-size: cover;
+    background-position: center;
+}
