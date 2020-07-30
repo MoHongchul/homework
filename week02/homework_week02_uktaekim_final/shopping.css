@@ -1,0 +1,32 @@
+/*site font (google)*/
+* {
+    font-family: 'Stylish', sans-serif;
+}
+
+/*form design*/
+.wrap {
+    margin: auto;
+    width: 700px;
+}
+.form_desgin {
+    padding: 10px;
+}
+
+/*image design*/
+.image_design {
+    /*display: block, margin:audo 2개를 넣으니 가운데 정렬 됨*/
+    display: block;
+    margin: auto;
+    width: 650px;
+    background-size: cover;
+    background-position: center;
+}
+
+.emphasize {
+    color: blue;
+}
+
+.center {
+    display: block;
+    margin: auto;
+}

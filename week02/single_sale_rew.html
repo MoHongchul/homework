@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" rel="stylesheet">
+
+
+    <!-- JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script crossorigin="anonymous"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Nanum Pen Script', cursive;
+        }
+
+        .wrap {
+            width: 500px;
+            margin: auto;
+        }
+
+        .wrap > img {
+            width: 500px;
+            height: 300px;
+            padding: 10px;
+        }
+
+        .title {
+            font-size: 30px;
+        }
+
+        .money {
+            font-size: 15px;
+        }
+
+    </style>
+
+</head>
+<script>
+    function do_order() {
+        let phone_reg = /^\d{3}-\d{3,4}-\d{4}$/;
+        if ($("#input_name").val() == "")
+            alert("이름을 입력하세요")
+        else if (isNaN($("#select_ea").val()))
+            alert("수량을 입력하세요")
+        else if ($("#input_addr").val() == "")
+            alert("주소를 입력하세요")
+        else if ($("#input_phone").val() == "")
+            alert("휴대폰 번호를 입력하세요")
+        else if (!phone_reg.test($("#input_phone").val()))
+            alert('핸드폰 번호 000-0000-0000 형식을 지켜주셍')
+        else
+            alert("쭈문 완료")
+    }
+
+    $(document).ready(function () {
+        $.ajax({
+            type: "GET",
+            url: "https://api.manana.kr/exchange/rate.json",
+            data: {},
+            success: function (re) {
+                $("#change").text("달러-원 환율: " + re[1].rate)
+            }
+        })
+    })
+
+</script>
+<body>
+<div class="wrap">
+    <img alt="purchase" src="https://blog.jinbo.net/attach/615/200937431.jpg">
+    <span class="title">팜다</span>
+    <span class="money">가격: 300,000원 / 개</span>
+    <p><span id="change" style="color: #406cef"></span></p>
+    <p>비추</p>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="span_name">이름</span>
+        </div>
+        <input aria-describedby="basic-addon1" aria-label="Username" class="form-control" id="input_name" type="text">
+    </div>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <label class="input-group-text" for="select_ea">수량</label>
+        </div>
+        <select class="custom-select" id="select_ea">
+            <option selected>---수량을 선택해주셍</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+        </select>
+    </div>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="span_addr">주소</span>
+        </div>
+        <input aria-describedby="basic-addon1" aria-label="address" class="form-control" id=input_addr type="text">
+    </div>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">휴대폰 번호</span>
+        </div>
+        <input aria-describedby="basic-addon1" aria-label="phone" class="form-control" id=input_phone type="text">
+    </div>
+    <div style="text-align: center;">
+        <button class="btn btn-outline-secondary" onclick=do_order()>주문하기</button>
+    </div>
+</div>
+
+</body>
+</html>
